@@ -184,81 +184,134 @@ layoutStart('Import Data CSV', 'import');
 
             <div class="divider"></div>
 
-            <a href="../../public/templates/template_import.csv" download class="btn btn-secondary btn-full">
-                Download Template CSV
+            <a href="download_template.php" class="btn btn-secondary btn-full" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Template CSV (Excel Ready)
             </a>
         </div>
     </div>
 
-    <!-- Panduan Format CSV -->
+    <!-- Panduan & Tabel Contoh Template CSV -->
     <div class="card">
-        <div class="card-header">
-            <div class="card-title">Format CSV yang Diterima</div>
+        <div class="card-header" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <div>
+                <div class="card-title">Tabel Template & Contoh Data CSV</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+                    Format tabel di bawah ini sudah disesuaikan agar otomatis rapi saat dibuka di Microsoft Excel.
+                </div>
+            </div>
+            <a href="download_template.php" class="btn btn-primary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Template (.csv)
+            </a>
         </div>
         <div class="card-body">
-            <div class="alert alert-info" style="font-size: 12px;">
-                <div>Baris pertama CSV harus berisi header. Kolom boleh dalam urutan apa pun selama nama header sesuai.</div>
+            <div class="alert alert-info" style="font-size: 13px; margin-bottom: 16px;">
+                <div>
+                    <strong>Petunjuk Pengisian:</strong> Baris pertama harus berupa nama kolom (header). Nilai Matematika, IPA, dan IPS berupa angka (0–100). Minat Siswa dan Orang Tua diisi <strong>IPA</strong>, <strong>IPS</strong>, atau <strong>RAGU</strong>.
+                </div>
             </div>
 
-            <div class="table-wrapper mb-16">
-                <table style="width: 100%; font-size: 11px;">
-                    <thead>
+            <!-- Tabel Preview Template CSV -->
+            <div class="table-container mb-16" style="border: 1px solid var(--border-color); border-radius: 8px; overflow-x: auto;">
+                <table style="width: 100%; font-size: 12px; margin-bottom: 0;">
+                    <thead style="background: var(--bg-secondary);">
                         <tr>
-                            <th>NIS</th>
-                            <th>Nama Siswa</th>
-                            <th>Nilai Matematika</th>
-                            <th>Nilai IPA</th>
-                            <th>Nilai IPS</th>
-                            <th>Minat Siswa</th>
-                            <th>Minat Orang Tua</th>
+                            <th style="padding: 10px 12px; text-align: center; width: 60px;">No</th>
+                            <th style="padding: 10px 12px;">NIS</th>
+                            <th style="padding: 10px 12px;">Nama Siswa</th>
+                            <th style="padding: 10px 12px; text-align: center;">Matematika (C1)</th>
+                            <th style="padding: 10px 12px; text-align: center;">IPA (C2)</th>
+                            <th style="padding: 10px 12px; text-align: center;">IPS (C3)</th>
+                            <th style="padding: 10px 12px; text-align: center;">Minat Siswa (C4)</th>
+                            <th style="padding: 10px 12px; text-align: center;">Minat Ortu (C5)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="font-mono">1001</td>
-                            <td>Ara Sumiarti</td>
+                            <td class="text-center font-mono" style="color: var(--text-muted);">1</td>
+                            <td class="font-mono" style="font-weight: 600;">1001</td>
+                            <td style="font-weight: 500;">Aditya Pratama</td>
+                            <td class="font-mono text-center">85.00</td>
+                            <td class="font-mono text-center">88.50</td>
+                            <td class="font-mono text-center">78.00</td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-mono" style="color: var(--text-muted);">2</td>
+                            <td class="font-mono" style="font-weight: 600;">1002</td>
+                            <td style="font-weight: 500;">Bella Anggraini</td>
+                            <td class="font-mono text-center">76.50</td>
+                            <td class="font-mono text-center">74.00</td>
+                            <td class="font-mono text-center">86.50</td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-mono" style="color: var(--text-muted);">3</td>
+                            <td class="font-mono" style="font-weight: 600;">1003</td>
+                            <td style="font-weight: 500;">Citra Lestari</td>
+                            <td class="font-mono text-center">90.00</td>
+                            <td class="font-mono text-center">92.00</td>
+                            <td class="font-mono text-center">75.00</td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-mono" style="color: var(--text-muted);">4</td>
+                            <td class="font-mono" style="font-weight: 600;">1004</td>
+                            <td style="font-weight: 500;">Dimas Wahyu Saputra</td>
+                            <td class="font-mono text-center">78.00</td>
+                            <td class="font-mono text-center">80.00</td>
                             <td class="font-mono text-center">82.00</td>
-                            <td class="font-mono text-center">84.50</td>
-                            <td class="font-mono text-center">85.50</td>
-                            <td><span class="badge badge-ipa">IPA</span></td>
-                            <td><span class="badge badge-ipa">IPA</span></td>
+                            <td class="text-center"><span class="badge badge-ragu">RAGU</span></td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
                         </tr>
                         <tr>
-                            <td class="font-mono">1002</td>
-                            <td>Budi Santoso</td>
-                            <td class="font-mono text-center">75</td>
-                            <td class="font-mono text-center">78</td>
-                            <td class="font-mono text-center">88</td>
-                            <td><span class="badge badge-ips">IPS</span></td>
-                            <td><span class="badge badge-ips">IPS</span></td>
+                            <td class="text-center font-mono" style="color: var(--text-muted);">5</td>
+                            <td class="font-mono" style="font-weight: 600;">1005</td>
+                            <td style="font-weight: 500;">Eka Nurjanah</td>
+                            <td class="font-mono text-center">72.00</td>
+                            <td class="font-mono text-center">70.00</td>
+                            <td class="font-mono text-center">89.00</td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
                         </tr>
                         <tr>
-                            <td class="font-mono">1003</td>
-                            <td>Citra Dewi</td>
-                            <td class="font-mono text-center">85</td>
-                            <td class="font-mono text-center">90</td>
-                            <td class="font-mono text-center">65</td>
-                            <td><span class="badge badge-ipa">IPA</span></td>
-                            <td><span class="badge badge-ragu">RAGU</span></td>
+                            <td class="text-center font-mono" style="color: var(--text-muted);">6</td>
+                            <td class="font-mono" style="font-weight: 600;">1006</td>
+                            <td style="font-weight: 500;">Fajar Ramadhan</td>
+                            <td class="font-mono text-center">88.00</td>
+                            <td class="font-mono text-center">85.00</td>
+                            <td class="font-mono text-center">80.00</td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                            <td class="text-center"><span class="badge badge-ragu">RAGU</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <table style="width: 100%; font-size: 12px;">
-                <thead>
-                    <tr><th>Header</th><th>Keterangan</th><th>Format</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td class="font-mono">nis</td><td>Nomor Induk Siswa</td><td>Teks</td></tr>
-                    <tr><td class="font-mono">nama</td><td>Nama Lengkap</td><td>Teks</td></tr>
-                    <tr><td class="font-mono">c1_matematika</td><td>Nilai Matematika</td><td>0 - 100</td></tr>
-                    <tr><td class="font-mono">c2_ipa</td><td>Nilai IPA</td><td>0 - 100</td></tr>
-                    <tr><td class="font-mono">c3_ips</td><td>Nilai IPS</td><td>0 - 100</td></tr>
-                    <tr><td class="font-mono">c4_minat_siswa</td><td>Minat Siswa</td><td><strong>IPA</strong>, <strong>IPS</strong>, atau <strong>RAGU</strong></td></tr>
-                    <tr><td class="font-mono">c5_minat_ortu</td><td>Minat Orang Tua</td><td><strong>IPA</strong>, <strong>IPS</strong>, atau <strong>RAGU</strong></td></tr>
-                </tbody>
-            </table>
+            <!-- Detail Aturan Kolom -->
+            <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">
+                Spesifikasi Format Kolom CSV
+            </div>
+            <div class="table-container" style="border: 1px solid var(--border-color); border-radius: 8px;">
+                <table style="width: 100%; font-size: 12px; margin-bottom: 0;">
+                    <thead style="background: var(--bg-secondary);">
+                        <tr><th style="padding: 8px 12px;">Header Kolom</th><th style="padding: 8px 12px;">Keterangan</th><th style="padding: 8px 12px;">Format Nilai</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="font-mono" style="color: var(--ipa-primary); font-weight: 600;">NIS</td><td>Nomor Induk Siswa (unik)</td><td>Teks / Angka (contoh: 1001)</td></tr>
+                        <tr><td class="font-mono" style="color: var(--ipa-primary); font-weight: 600;">Nama Siswa</td><td>Nama Lengkap Siswa</td><td>Teks</td></tr>
+                        <tr><td class="font-mono" style="color: var(--ipa-primary); font-weight: 600;">Nilai Matematika</td><td>Nilai Kriteria C1 (Benefit)</td><td>Angka Desimal (0.00 - 100.00)</td></tr>
+                        <tr><td class="font-mono" style="color: var(--ipa-primary); font-weight: 600;">Nilai IPA</td><td>Nilai Kriteria C2 (Benefit)</td><td>Angka Desimal (0.00 - 100.00)</td></tr>
+                        <tr><td class="font-mono" style="color: var(--ipa-primary); font-weight: 600;">Nilai IPS</td><td>Nilai Kriteria C3 (Benefit)</td><td>Angka Desimal (0.00 - 100.00)</td></tr>
+                        <tr><td class="font-mono" style="color: var(--ipa-primary); font-weight: 600;">Minat Siswa</td><td>Angket Minat Siswa (C4)</td><td>Pilihan: <strong>IPA</strong>, <strong>IPS</strong>, atau <strong>RAGU</strong></td></tr>
+                        <tr><td class="font-mono" style="color: var(--ipa-primary); font-weight: 600;">Minat Orang Tua</td><td>Angket Minat Orang Tua (C5)</td><td>Pilihan: <strong>IPA</strong>, <strong>IPS</strong>, atau <strong>RAGU</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
