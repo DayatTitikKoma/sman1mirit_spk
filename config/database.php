@@ -37,6 +37,11 @@ function getDB(): PDO {
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
 
+        // Dukungan SSL untuk Cloud Database (Aiven/Railway)
+        if (DB_HOST !== 'localhost' && DB_HOST !== '127.0.0.1') {
+            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+        }
+
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
