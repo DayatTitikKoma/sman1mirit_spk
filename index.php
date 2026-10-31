@@ -197,12 +197,21 @@
             .main-title { font-size: 40px; }
         }
         @media (max-width: 768px) {
-            .split-layout { flex-direction: column; }
+            body {
+                height: auto;
+                min-height: 100vh;
+                overflow-y: auto;
+            }
+            .split-layout { flex-direction: column; min-height: 100vh; }
             .graphic-side { display: none; }
-            .content-side { padding: 40px; align-items: center; text-align: center; }
-            .main-title { font-size: 36px; }
-            .btn-masuk { align-self: center; }
+            .content-side { padding: 40px 20px; align-items: center; text-align: center; }
+            .main-title { font-size: 32px; }
+            .btn-masuk { align-self: center; width: 100%; max-width: 320px; }
             .footer { position: relative; bottom: 0; margin-top: 40px; }
+        }
+        @media (max-width: 480px) {
+            .content-side { padding: 30px 16px; }
+            .main-title { font-size: 26px; }
         }
     </style>
 </head>

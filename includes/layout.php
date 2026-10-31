@@ -60,6 +60,7 @@ function layoutStart(string $pageTitle = 'SPK MOORA', string $activePage = ''): 
                 <div class="logo-title">SPK MOORA</div>
                 <div class="logo-subtitle">SMA Negeri 1 Mirit</div>
             </div>
+            <button type="button" class="sidebar-close-btn" onclick="toggleSidebar(false)" aria-label="Tutup Menu">✕</button>
         </div>
 
         <!-- Info Pengguna -->
@@ -151,14 +152,24 @@ function layoutStart(string $pageTitle = 'SPK MOORA', string $activePage = ''): 
         </div>
     </aside>
 
+    <!-- Overlay backdrop untuk mobile drawer -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar(false)"></div>
+
     <!-- ======= MAIN ======= -->
     <div class="main-content">
         <div class="top-bar">
-            <button class="btn btn-secondary btn-sm" id="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" style="display:none">
-                ☰
+            <button type="button" class="btn btn-secondary btn-sm mobile-menu-btn" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Buka Menu">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-            <div class="page-title"><?= htmlspecialchars($pageTitle) ?></div>
-            <div class="breadcrumb">SPK MOORA / <?= htmlspecialchars($pageTitle) ?></div>
+            <div class="top-bar-title-wrap">
+                <div class="page-title"><?= htmlspecialchars($pageTitle) ?></div>
+                <div class="breadcrumb">SPK MOORA / <?= htmlspecialchars($pageTitle) ?></div>
+            </div>
+            <div class="top-bar-user-badge">
+                <span class="badge" style="<?= $roleBadgeStyle ?> padding: 4px 8px; font-size: 11px; border-radius: 20px;">
+                    <?= $roleLabel ?>
+                </span>
+            </div>
         </div>
 
         <div class="content-area animate-fade-in">
@@ -171,12 +182,59 @@ function layoutEnd(): void {
     $relativePath = str_replace($projectRoot, '', dirname($callerFile));
     $depth = substr_count($relativePath, '/');
     $ROOT  = str_repeat('../', $depth);
+
+    $user        = getCurrentUser();
+    $role        = $user['role'] ?? 'guest';
+    $isAdminUser = ($role === 'admin');
     ?>
         </div><!-- end content-area -->
     </div><!-- end main-content -->
 </div><!-- end app-wrapper -->
 
+<!-- Bottom Navigation Bar Khusus Tampilan Handphone (Hidden di Laptop) -->
+<nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+    <a href="<?= $ROOT ?>dashboard.php" class="bottom-nav-item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+        <span>Beranda</span>
+    </a>
+    <?php if ($isAdminUser): ?>
+    <a href="<?= $ROOT ?>modules/siswa/index.php" class="bottom-nav-item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+        <span>Siswa</span>
+    </a>
+    <?php endif; ?>
+    <a href="<?= $ROOT ?>modules/perhitungan/index.php" class="bottom-nav-item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
+        <span>Hitung</span>
+    </a>
+    <a href="<?= $ROOT ?>modules/histori/index.php" class="bottom-nav-item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        <span>Histori</span>
+    </a>
+    <button type="button" class="bottom-nav-item" onclick="toggleSidebar()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span>Menu</span>
+    </button>
+</nav>
+
 <div id="toast-container"></div>
+<script>
+function toggleSidebar(forceState) {
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar) return;
+    const shouldOpen = (forceState !== undefined) ? forceState : !sidebar.classList.contains('open');
+    if (shouldOpen) {
+        sidebar.classList.add('open');
+        if (backdrop) backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } else {
+        sidebar.classList.remove('open');
+        if (backdrop) backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+</script>
 <script src="<?= $ROOT ?>assets/js/main.js"></script>
 </body>
 </html>

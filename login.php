@@ -259,11 +259,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .content-side { padding: 60px; }
         }
         @media (max-width: 768px) {
-            .split-layout { flex-direction: column; }
+            body {
+                height: auto;
+                min-height: 100vh;
+                overflow-y: auto;
+            }
+            .split-layout { flex-direction: column; min-height: 100vh; }
             .graphic-side { display: none; }
-            .content-side { padding: 40px; align-items: center; }
-            .login-form { margin: 0 auto; }
-            .footer { position: relative; bottom: 0; margin-top: 40px; text-align: center; }
+            .content-side { padding: 32px 20px; align-items: center; justify-content: flex-start; }
+            .login-form { margin: 0 auto; width: 100%; max-width: 420px; }
+            .role-selector { width: 100%; }
+            .demo-box { width: 100%; }
+            .footer { position: relative; bottom: 0; margin-top: 30px; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .content-side { padding: 24px 16px; }
+            .main-title { font-size: 26px; }
+            .form-control { font-size: 16px; }
         }
     </style>
     <link rel="icon" href="public/assets/favicon.svg" type="image/svg+xml">

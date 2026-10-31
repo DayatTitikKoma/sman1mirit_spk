@@ -1279,23 +1279,254 @@ tbody td {
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE DESIGN (DESKTOP vs HANDPHONE)
    ============================================================ */
+
+/* ---- ATURAN KHUSUS LAPTOP / DESKTOP (Layar > 768px) ---- */
+/* Mempertahankan tampilan asli laptop tanpa perubahan */
+@media (min-width: 769px) {
+    .mobile-bottom-nav,
+    .mobile-menu-btn,
+    .sidebar-backdrop,
+    .sidebar-close-btn,
+    .top-bar-user-badge {
+        display: none !important;
+    }
+}
+
+/* ---- ATURAN KHUSUS HANDPHONE / MOBILE (Layar <= 768px) ---- */
 @media (max-width: 768px) {
+    /* Layout Utama */
+    .app-wrapper {
+        display: block;
+        min-height: 100vh;
+    }
+
+    /* Sidebar Drawer Off-Canvas */
     .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 280px !important;
+        max-width: 85vw !important;
+        z-index: 1050 !important;
         transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+        overflow-y: auto;
     }
     .sidebar.open {
-        transform: translateX(0);
+        transform: translateX(0) !important;
     }
+
+    /* Tombol Close di Sidebar */
+    .sidebar-close-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background: #f8fafc;
+        color: var(--text-secondary);
+        font-size: 14px;
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+    /* Backdrop Blur */
+    .sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 1040;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+    .sidebar-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Main Content */
     .main-content {
-        margin-left: 0;
+        margin-left: 0 !important;
+        width: 100% !important;
+        min-height: 100vh;
     }
-    .stat-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    /* Top Bar Mobile */
+    .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 90;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border-color);
     }
+    .mobile-menu-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background: #ffffff;
+        color: var(--text-primary);
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+    .top-bar-title-wrap {
+        flex: 1;
+        min-width: 0;
+    }
+    .top-bar-title-wrap .page-title {
+        font-size: 16px;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0;
+    }
+    .top-bar-title-wrap .breadcrumb {
+        display: none;
+    }
+    .top-bar-user-badge {
+        display: block !important;
+        flex-shrink: 0;
+    }
+
+    /* Content Area (Tambahan padding-bottom agar tidak tertutup bottom-nav) */
     .content-area {
-        padding: 16px;
+        padding: 16px 14px 80px 14px !important;
+    }
+
+    /* Grid Statistik */
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .stat-card {
+        padding: 14px 12px !important;
+    }
+    .stat-value {
+        font-size: 22px !important;
+    }
+    .stat-label {
+        font-size: 11px !important;
+    }
+
+    /* Cards */
+    .card {
+        padding: 16px !important;
+        border-radius: var(--radius-lg);
+        margin-bottom: 14px;
+    }
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .card-header .btn, 
+    .card-header .btn-group {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Tabel Responsif Touch-Scroll */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 8px;
+        margin-bottom: 12px;
+    }
+    .table-container table {
+        min-width: 540px;
+    }
+
+    /* Filter & Form Controls */
+    .filter-bar,
+    .search-bar,
+    .action-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        width: 100%;
+    }
+    .filter-bar input,
+    .filter-bar select,
+    .filter-bar button {
+        width: 100% !important;
+    }
+
+    /* Bottom Navigation Bar Handphone */
+    .mobile-bottom-nav {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 58px;
+        background: #ffffff;
+        border-top: 1px solid var(--border-color);
+        display: flex !important;
+        align-items: center;
+        justify-content: space-around;
+        z-index: 100;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .bottom-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        flex: 1;
+        height: 100%;
+        color: #64748b;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 500;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: color 0.15s;
+    }
+    .bottom-nav-item svg {
+        width: 20px;
+        height: 20px;
+    }
+    .bottom-nav-item:active,
+    .bottom-nav-item.active {
+        color: var(--ipa-primary);
+    }
+}
+
+/* Layar Handphone Sangat Kecil (< 480px) */
+@media (max-width: 480px) {
+    .stat-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
     }
 }
 
