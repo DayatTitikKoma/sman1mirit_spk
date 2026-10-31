@@ -231,62 +231,52 @@ layoutStart('Import Data CSV', 'import');
                         <tr>
                             <td class="text-center font-mono" style="color: var(--text-muted);">1</td>
                             <td class="font-mono" style="font-weight: 600;">1001</td>
-                            <td style="font-weight: 500;">Aditya Pratama</td>
-                            <td class="font-mono text-center">85.00</td>
-                            <td class="font-mono text-center">88.50</td>
-                            <td class="font-mono text-center">78.00</td>
+                            <td style="font-weight: 500;">Adit</td>
+                            <td class="font-mono text-center">70</td>
+                            <td class="font-mono text-center">76</td>
+                            <td class="font-mono text-center">86</td>
                             <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
-                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
                         </tr>
                         <tr>
                             <td class="text-center font-mono" style="color: var(--text-muted);">2</td>
                             <td class="font-mono" style="font-weight: 600;">1002</td>
-                            <td style="font-weight: 500;">Bella Anggraini</td>
-                            <td class="font-mono text-center">76.50</td>
-                            <td class="font-mono text-center">74.00</td>
-                            <td class="font-mono text-center">86.50</td>
-                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
-                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
+                            <td style="font-weight: 500;">Bella</td>
+                            <td class="font-mono text-center">79</td>
+                            <td class="font-mono text-center">78</td>
+                            <td class="font-mono text-center">87</td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
                         </tr>
                         <tr>
                             <td class="text-center font-mono" style="color: var(--text-muted);">3</td>
                             <td class="font-mono" style="font-weight: 600;">1003</td>
-                            <td style="font-weight: 500;">Citra Lestari</td>
-                            <td class="font-mono text-center">90.00</td>
-                            <td class="font-mono text-center">92.00</td>
-                            <td class="font-mono text-center">75.00</td>
+                            <td style="font-weight: 500;">Citra</td>
+                            <td class="font-mono text-center">80</td>
+                            <td class="font-mono text-center">81</td>
+                            <td class="font-mono text-center">76</td>
                             <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
-                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
                         </tr>
                         <tr>
                             <td class="text-center font-mono" style="color: var(--text-muted);">4</td>
                             <td class="font-mono" style="font-weight: 600;">1004</td>
-                            <td style="font-weight: 500;">Dimas Wahyu Saputra</td>
-                            <td class="font-mono text-center">78.00</td>
-                            <td class="font-mono text-center">80.00</td>
-                            <td class="font-mono text-center">82.00</td>
-                            <td class="text-center"><span class="badge badge-ragu">RAGU</span></td>
-                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
+                            <td style="font-weight: 500;">Dimas</td>
+                            <td class="font-mono text-center">78</td>
+                            <td class="font-mono text-center">87</td>
+                            <td class="font-mono text-center">79</td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
+                            <td class="text-center"><span class="badge badge-ips">IPS</span></td>
                         </tr>
                         <tr>
                             <td class="text-center font-mono" style="color: var(--text-muted);">5</td>
                             <td class="font-mono" style="font-weight: 600;">1005</td>
-                            <td style="font-weight: 500;">Eka Nurjanah</td>
-                            <td class="font-mono text-center">72.00</td>
-                            <td class="font-mono text-center">70.00</td>
-                            <td class="font-mono text-center">89.00</td>
+                            <td style="font-weight: 500;">Gita</td>
+                            <td class="font-mono text-center">84</td>
+                            <td class="font-mono text-center">86</td>
+                            <td class="font-mono text-center">80</td>
                             <td class="text-center"><span class="badge badge-ips">IPS</span></td>
                             <td class="text-center"><span class="badge badge-ips">IPS</span></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center font-mono" style="color: var(--text-muted);">6</td>
-                            <td class="font-mono" style="font-weight: 600;">1006</td>
-                            <td style="font-weight: 500;">Fajar Ramadhan</td>
-                            <td class="font-mono text-center">88.00</td>
-                            <td class="font-mono text-center">85.00</td>
-                            <td class="font-mono text-center">80.00</td>
-                            <td class="text-center"><span class="badge badge-ipa">IPA</span></td>
-                            <td class="text-center"><span class="badge badge-ragu">RAGU</span></td>
                         </tr>
                     </tbody>
                 </table>
