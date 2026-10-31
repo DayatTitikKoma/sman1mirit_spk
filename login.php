@@ -2,6 +2,7 @@
 // ============================================================
 // login.php — Halaman Login
 // ============================================================
+require_once __DIR__ . '/config/session.php';   // DB session handler (Vercel-compatible)
 session_start();
 require_once __DIR__ . '/config/database.php';
 

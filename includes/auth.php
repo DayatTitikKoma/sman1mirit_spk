@@ -2,7 +2,11 @@
 // ============================================================
 // includes/auth.php
 // Menangani session, validasi login, dan kontrol akses peran
+// Menggunakan database session handler (kompatibel Vercel)
 // ============================================================
+
+// Load database session handler (wajib sebelum session_start)
+require_once dirname(__DIR__) . '/config/session.php';
 
 // Mulai sesi jika belum dimulai
 if (session_status() === PHP_SESSION_NONE) {

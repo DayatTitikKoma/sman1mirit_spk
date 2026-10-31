@@ -112,6 +112,17 @@ CREATE TABLE IF NOT EXISTS `users` (
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- ------------------------------------------------------------
+-- Tabel: php_sessions
+-- Database-based session storage untuk Vercel (serverless)
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `php_sessions` (
+    `session_id` VARCHAR(128) NOT NULL PRIMARY KEY,
+    `data`       MEDIUMTEXT NOT NULL,
+    `expires_at` DATETIME NOT NULL,
+    INDEX `idx_expires` (`expires_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Insert default users
 -- Passwords di-hash menggunakan password_hash('admin123', PASSWORD_BCRYPT)
 -- dan password_hash('gurubk123', PASSWORD_BCRYPT)

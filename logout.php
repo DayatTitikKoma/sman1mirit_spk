@@ -3,6 +3,7 @@
 // logout.php
 // Menghancurkan session dan kembali ke login
 // ============================================================
+require_once __DIR__ . '/config/session.php';   // DB session handler (Vercel-compatible)
 session_start();
 
 // Hapus semua data sesi
