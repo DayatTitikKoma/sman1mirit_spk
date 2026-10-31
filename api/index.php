@@ -39,7 +39,7 @@ if (is_file($targetFile)) {
         if (isset($mimes[$ext])) {
             header('Content-Type: ' . $mimes[$ext]);
         }
-        header('Cache-Control: public, max-age=86400');
+        header('Cache-Control: no-cache, must-revalidate');
         while (ob_get_level()) {
             ob_end_clean();
         }

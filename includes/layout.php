@@ -41,9 +41,141 @@ function layoutStart(string $pageTitle = 'SPK MOORA', string $activePage = ''): 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($pageTitle) ?> — SPK MOORA SMAN 1 Mirit</title>
     <meta name="description" content="Sistem Pendukung Keputusan Rekomendasi Peminatan Siswa menggunakan Metode MOORA — SMA Negeri 1 Mirit">
-    <link rel="stylesheet" href="<?= $ROOT ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= $ROOT ?>assets/css/style.css?v=2.1">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="icon" href="<?= $ROOT ?>public/assets/favicon.svg" type="image/svg+xml">
+    <style>
+        /* CSS Kritis: Jamin 100% Elemen Mobile TIDAK PERNAH Bocor di Laptop/Desktop */
+        @media (min-width: 769px) {
+            .mobile-bottom-nav,
+            .mobile-menu-btn,
+            .sidebar-backdrop,
+            .sidebar-close-btn,
+            .top-bar-user-badge {
+                display: none !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .app-wrapper { display: block; }
+            .sidebar {
+                position: fixed !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                width: 280px !important;
+                max-width: 85vw !important;
+                z-index: 1050 !important;
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+                overflow-y: auto;
+            }
+            .sidebar.open { transform: translateX(0) !important; }
+            .sidebar-close-btn {
+                display: inline-flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+                border: 1px solid #e2e8f0;
+                background: #f8fafc;
+                color: #475569;
+                font-size: 14px;
+                margin-left: auto;
+                cursor: pointer;
+            }
+            .sidebar-backdrop {
+                position: fixed;
+                inset: 0;
+                background: rgba(15, 23, 42, 0.45);
+                backdrop-filter: blur(2px);
+                z-index: 1040;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.25s ease;
+            }
+            .sidebar-backdrop.active { opacity: 1; pointer-events: auto; }
+            .main-content { margin-left: 0 !important; width: 100% !important; }
+            .top-bar {
+                position: sticky;
+                top: 0;
+                z-index: 90;
+                padding: 10px 14px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                background: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .mobile-menu-btn {
+                display: inline-flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                padding: 0;
+                border-radius: 8px;
+                border: 1px solid #e2e8f0;
+                background: #ffffff;
+                color: #0f172a;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+            .top-bar-title-wrap { flex: 1; min-width: 0; }
+            .top-bar-title-wrap .page-title {
+                font-size: 16px;
+                font-weight: 700;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 0;
+            }
+            .top-bar-title-wrap .breadcrumb { display: none; }
+            .top-bar-user-badge { display: block !important; flex-shrink: 0; }
+            .content-area { padding: 14px 12px 84px 12px !important; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+            .stat-card { padding: 12px !important; }
+            .stat-value { font-size: 20px !important; }
+            .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; margin-bottom: 12px; }
+            .table-container table { min-width: 540px; }
+            .mobile-bottom-nav {
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 58px !important;
+                background: #ffffff !important;
+                border-top: 1px solid #e2e8f0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-around !important;
+                z-index: 100 !important;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .bottom-nav-item {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 2px !important;
+                flex: 1 !important;
+                height: 100% !important;
+                color: #64748b !important;
+                text-decoration: none !important;
+                font-size: 11px !important;
+                font-weight: 500 !important;
+                border: none !important;
+                background: transparent !important;
+                cursor: pointer !important;
+            }
+            .bottom-nav-item svg { width: 18px !important; height: 18px !important; }
+            .bottom-nav-item:active, .bottom-nav-item.active { color: #2563eb !important; }
+        }
+    </style>
 </head>
 <body>
 <div class="app-wrapper">
