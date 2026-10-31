@@ -55,11 +55,17 @@ class DbSessionHandler implements SessionHandlerInterface {
     }
 }
 
-// Daftarkan handler dan mulai session
-$handler = new DbSessionHandler();
-session_set_save_handler($handler, true);
+// Cek apakah berjalan di lingkungan Vercel (Serverless)
+$isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']) || getenv('VERCEL') !== false;
 
-// Konfigurasi session agar aman di Vercel (HTTPS)
+// Di Vercel wajib gunakan Database Session Handler karena serverless bersifat stateless
+// Di localhost (XAMPP), gunakan session native PHP bawaan Apache yang lebih cepat & stabil
+if ($isVercel) {
+    $handler = new DbSessionHandler();
+    session_set_save_handler($handler, true);
+}
+
+// Konfigurasi session cookie (HTTPS di Vercel, HTTP di local)
 $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
 
