@@ -39,6 +39,10 @@ if (is_file($targetFile)) {
         if (isset($mimes[$ext])) {
             header('Content-Type: ' . $mimes[$ext]);
         }
+        header('Cache-Control: public, max-age=86400');
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
         readfile($targetFile);
         exit;
     }
@@ -57,3 +61,4 @@ if (is_file($targetFile)) {
     http_response_code(404);
     echo '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>404 Not Found</h1><p>Halaman tidak ditemukan.</p></body></html>';
 }
+
