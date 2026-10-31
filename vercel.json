@@ -2,16 +2,7 @@
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.2",
-      "includeFiles": [
-        "config/**",
-        "core/**",
-        "database/**",
-        "includes/**",
-        "modules/**",
-        "public/**",
-        "assets/**",
-        "*.php"
-      ]
+      "includeFiles": "**"
     }
   },
   "routes": [
