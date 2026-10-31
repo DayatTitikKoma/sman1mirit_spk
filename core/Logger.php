@@ -97,8 +97,8 @@ class Logger {
         return dbQuery(
             'SELECT s.*,
                     COUNT(h.id) as jumlah_hasil,
-                    SUM(CASE WHEN h.rekomendasi = "IPA" THEN 1 ELSE 0 END) as jumlah_ipa,
-                    SUM(CASE WHEN h.rekomendasi = "IPS" THEN 1 ELSE 0 END) as jumlah_ips
+                    SUM(CASE WHEN h.rekomendasi = \'IPA\' THEN 1 ELSE 0 END) as jumlah_ipa,
+                    SUM(CASE WHEN h.rekomendasi = \'IPS\' THEN 1 ELSE 0 END) as jumlah_ips
              FROM sesi_perhitungan s
              LEFT JOIN hasil_perhitungan h ON h.sesi_id = s.id
              GROUP BY s.id

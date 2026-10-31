@@ -19,8 +19,8 @@ $sesiTerakhir = null;
 if ($totalSesi > 0) {
     $sesiTerakhir = dbQueryOne(
         'SELECT s.*, 
-                SUM(CASE WHEN h.rekomendasi="IPA" THEN 1 ELSE 0 END) as jml_ipa,
-                SUM(CASE WHEN h.rekomendasi="IPS" THEN 1 ELSE 0 END) as jml_ips,
+                SUM(CASE WHEN h.rekomendasi=\'IPA\' THEN 1 ELSE 0 END) as jml_ipa,
+                SUM(CASE WHEN h.rekomendasi=\'IPS\' THEN 1 ELSE 0 END) as jml_ips,
                 COUNT(h.id) as jml_siswa
          FROM sesi_perhitungan s
          LEFT JOIN hasil_perhitungan h ON h.sesi_id = s.id
