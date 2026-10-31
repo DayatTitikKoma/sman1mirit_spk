@@ -1,0 +1,31 @@
+# =============================================
+# .gitignore — SPK MOORA
+# =============================================
+
+# File konfigurasi lokal (jangan di-push ke Git)
+.env
+.env.local
+*.env
+
+# File sampah Windows & editor
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+*.swo
+
+# Log PHP
+*.log
+error_log
+
+# Folder upload (jika ada)
+uploads/
+public/uploads/
+
+# Folder aplikasi desktop (bukan bagian dari web)
+sman1mirit_spk-win32-x64/
+
+# Dependency / build artifacts
+node_modules/
+vendor/
+
