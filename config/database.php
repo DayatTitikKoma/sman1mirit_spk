@@ -6,13 +6,23 @@
 // fallback ke XAMPP localhost (pengembangan lokal)
 // ============================================================
 
-// Railway menyediakan variabel MYSQL_URL atau MYSQLHOST secara otomatis
-// Jika tidak ada (lokal), gunakan nilai default XAMPP
-define('DB_HOST',    getenv('MYSQLHOST')     ?: 'localhost');
-define('DB_USER',    getenv('MYSQLUSER')     ?: 'root');
-define('DB_PASS',    getenv('MYSQLPASSWORD') ?: '');
-define('DB_NAME',    getenv('MYSQLDATABASE') ?: 'spk_sman1mirit');
-define('DB_PORT',    (int)(getenv('MYSQLPORT') ?: 3306));
+// Helper untuk membaca environment variable (kompatibel Vercel Serverless & Docker/Railway)
+function getEnvVar(string $key, string $default = ''): string {
+    if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
+        return $_ENV[$key];
+    }
+    if (isset($_SERVER[$key]) && $_SERVER[$key] !== '') {
+        return $_SERVER[$key];
+    }
+    $val = getenv($key);
+    return ($val !== false && $val !== '') ? $val : $default;
+}
+
+define('DB_HOST',    getEnvVar('MYSQLHOST', 'localhost'));
+define('DB_USER',    getEnvVar('MYSQLUSER', 'root'));
+define('DB_PASS',    getEnvVar('MYSQLPASSWORD', ''));
+define('DB_NAME',    getEnvVar('MYSQLDATABASE', 'spk_sman1mirit'));
+define('DB_PORT',    (int) getEnvVar('MYSQLPORT', '3306'));
 define('DB_CHARSET', 'utf8mb4');
 
 /**
