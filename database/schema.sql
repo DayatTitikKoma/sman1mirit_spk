@@ -104,7 +104,7 @@ CREATE TABLE `users` (
 
 -- Default login: admin / admin123 dan guru_bk / gurubk123
 INSERT INTO `users` (`username`, `password`, `nama`, `role`) VALUES 
-('admin',   '$2y$10$wN2a1vLto8L/3X/H.A6O8e8h.7lUEXO2O4zJgP5K1YgB2xP9/b3fO', 'Administrator', 'admin'),
-('guru_bk', '$2y$10$K8oQQmz3U6wTe0L5.NxHJOvXKI8qFBRn7F2eEH1p1C5YKC0nv.5gC', 'Guru BK',       'guru_bk');
+('admin',   '$2y$10$4lc4jdTbDbxhmghAcvmtJeJ3xpgk2ZBoVWO853Dr6EA0BdflFUHVu', 'Administrator', 'admin'),
+('guru_bk', '$2y$10$pLbgOAIzVbv0z1oflHxaze/w.nOFbLmRIJ.agtcHbhBnXi1Xc2RFi', 'Guru BK',       'guru_bk');
 
 SET FOREIGN_KEY_CHECKS = 1;
