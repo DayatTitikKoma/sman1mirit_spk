@@ -1,9 +1,18 @@
 <?php
 // ============================================================
 // config/session.php
-// Database-based session handler — wajib untuk Vercel (serverless)
-// Di XAMPP lokal, file ini juga berjalan normal (fallback ke DB)
+// Database-based session handler — KHUSUS Vercel (serverless)
+// Di InfinityFree / Apache / cPanel / XAMPP, PHP memakai native session
 // ============================================================
+
+// Cek apakah berjalan di lingkungan Vercel Serverless
+$isVercel = !empty($_ENV['VERCEL']) || !empty($_SERVER['VERCEL']) || getenv('VERCEL') !== false;
+
+if (!$isVercel) {
+    // Di luar Vercel, hentikan eksekusi file ini.
+    // PHP otomatis menggunakan session native bawaan Apache yang stabil.
+    return;
+}
 
 require_once __DIR__ . '/database.php';
 
