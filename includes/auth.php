@@ -99,9 +99,12 @@ function getCurrentUser(): ?array {
  * @return string
  */
 function getRoleLabel(string $role): string {
-    return match($role) {
-        'admin'   => 'Administrator',
-        'guru_bk' => 'Guru BK',
-        default   => ucfirst($role),
-    };
+    switch ($role) {
+        case 'admin':
+            return 'Administrator';
+        case 'guru_bk':
+            return 'Guru BK';
+        default:
+            return ucfirst($role);
+    }
 }

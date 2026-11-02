@@ -1,4 +1,9 @@
 <?php
+// Tampilkan error jika ada masalah di server hosting
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 // ============================================================
 // login.php — Halaman Login
 // ============================================================

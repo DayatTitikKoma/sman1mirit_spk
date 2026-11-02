@@ -24,34 +24,34 @@ class DbSessionHandler implements SessionHandlerInterface {
         return true;
     }
 
-    public function read(string $id): string|false {
+    public function read($id) {
         $stmt = $this->db->prepare(
             'SELECT data FROM php_sessions WHERE session_id = ? AND expires_at > NOW()'
         );
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ? $row['data'] : '';
+        return $row ? (string)$row['data'] : '';
     }
 
-    public function write(string $id, string $data): bool {
+    public function write($id, $data) {
         $expires = date('Y-m-d H:i:s', time() + $this->lifetime);
         $stmt = $this->db->prepare(
             'INSERT INTO php_sessions (session_id, data, expires_at)
              VALUES (?, ?, ?)
              ON DUPLICATE KEY UPDATE data = VALUES(data), expires_at = VALUES(expires_at)'
         );
-        return $stmt->execute([$id, $data, $expires]);
+        return (bool)$stmt->execute([$id, $data, $expires]);
     }
 
-    public function destroy(string $id): bool {
+    public function destroy($id) {
         $stmt = $this->db->prepare('DELETE FROM php_sessions WHERE session_id = ?');
-        return $stmt->execute([$id]);
+        return (bool)$stmt->execute([$id]);
     }
 
-    public function gc(int $max_lifetime): int|false {
+    public function gc($max_lifetime) {
         $stmt = $this->db->prepare('DELETE FROM php_sessions WHERE expires_at < NOW()');
         $stmt->execute();
-        return $stmt->rowCount();
+        return (int)$stmt->rowCount();
     }
 }
 
