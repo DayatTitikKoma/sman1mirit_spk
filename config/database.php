@@ -23,7 +23,9 @@ define('DB_USER',    getEnvVar('MYSQLUSER', 'root'));
 define('DB_PASS',    getEnvVar('MYSQLPASSWORD', ''));
 define('DB_NAME',    getEnvVar('MYSQLDATABASE', 'spk_sman1mirit'));
 define('DB_PORT',    (int) getEnvVar('MYSQLPORT', '3306'));
-define('DB_CHARSET', 'utf8mb4');
+if (!defined('DB_CHARSET')) {
+    define('DB_CHARSET', 'utf8mb4');
+}
 
 /**
  * Membuat koneksi PDO ke database MySQL.
