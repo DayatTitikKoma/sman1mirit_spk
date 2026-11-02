@@ -33,7 +33,8 @@ class DbSessionHandler implements SessionHandlerInterface {
         return true;
     }
 
-    public function read($id) {
+    #[\ReturnTypeWillChange]
+    public function read(string $id): string|false {
         $stmt = $this->db->prepare(
             'SELECT data FROM php_sessions WHERE session_id = ? AND expires_at > NOW()'
         );
@@ -42,7 +43,8 @@ class DbSessionHandler implements SessionHandlerInterface {
         return $row ? (string)$row['data'] : '';
     }
 
-    public function write($id, $data) {
+    #[\ReturnTypeWillChange]
+    public function write(string $id, string $data): bool {
         $expires = date('Y-m-d H:i:s', time() + $this->lifetime);
         $stmt = $this->db->prepare(
             'INSERT INTO php_sessions (session_id, data, expires_at)
@@ -52,12 +54,14 @@ class DbSessionHandler implements SessionHandlerInterface {
         return (bool)$stmt->execute([$id, $data, $expires]);
     }
 
-    public function destroy($id) {
+    #[\ReturnTypeWillChange]
+    public function destroy(string $id): bool {
         $stmt = $this->db->prepare('DELETE FROM php_sessions WHERE session_id = ?');
         return (bool)$stmt->execute([$id]);
     }
 
-    public function gc($max_lifetime) {
+    #[\ReturnTypeWillChange]
+    public function gc(int $max_lifetime): int|false {
         $stmt = $this->db->prepare('DELETE FROM php_sessions WHERE expires_at < NOW()');
         $stmt->execute();
         return (int)$stmt->rowCount();
