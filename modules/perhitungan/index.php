@@ -51,9 +51,11 @@ if (isAdmin() && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hitung']
 }
 
 // ---- Tampilkan hasil sesi terakhir jika ada ----
+$isHasilLama = false; // flag: true jika yang ditampilkan adalah sesi lama (bukan baru dihitung)
 if (empty($hasilList)) {
     // Coba load dari sesi terakhir
     $sesiTerakhir = dbQueryOne('SELECT * FROM sesi_perhitungan ORDER BY created_at DESC LIMIT 1');
+    $isHasilLama  = ($sesiTerakhir !== null);
     if ($sesiTerakhir) {
         $sesiId    = $sesiTerakhir['id'];
         $dbHasil   = dbQuery(
@@ -134,6 +136,7 @@ layoutStart('Perhitungan MOORA', 'perhitungan');
                 Perhitungan menggunakan <strong>seluruh data siswa</strong> yang ada di database.
                 C1 (Matematika) diikutsertakan di kedua skor IPA dan IPS.
                 Semua kriteria bersifat <strong>Benefit</strong>.
+                <strong>Bobot yang akan dipakai sesuai dengan nilai di menu Kriteria saat ini.</strong>
             </div>
         </div>
     </div>
@@ -150,6 +153,20 @@ layoutStart('Perhitungan MOORA', 'perhitungan');
 <?php endif; ?>
 
 <?php if (!empty($hasilList)): ?>
+
+<?php if ($isHasilLama && isset($sesiTerakhir)): ?>
+<!-- Banner: hasil yang ditampilkan adalah sesi lama -->
+<div class="alert alert-warning mb-24">
+    <span class="alert-icon">⚠️</span>
+    <div>
+        Yang ditampilkan di bawah adalah <strong>hasil sesi lama</strong>
+        (<?= htmlspecialchars($sesiTerakhir['nama_sesi']) ?>,
+        <?= date('d M Y H:i', strtotime($sesiTerakhir['created_at'])) ?>).
+        Jika Anda baru mengubah bobot kriteria atau data siswa,
+        klik <strong>"Hitung Rekomendasi"</strong> di atas untuk mendapatkan hasil terbaru.
+    </div>
+</div>
+<?php endif; ?>
 
 <!-- ---- Stat Summary ---- -->
 <div class="stat-grid mb-24">
